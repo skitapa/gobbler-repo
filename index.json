@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "generated_at": 1783152062,
+  "modules": [
+    {
+      "id": "aircraft-api",
+      "name": "OSINT: aircraft position API",
+      "version": "0.1.0",
+      "kind": "source",
+      "description": "Polls a free, keyless public ADS-B API for aircraft positions and lands them as observations - no radio required. Combines with the AIS decoder for a single ship + aircraft situational picture.",
+      "artifact_url": "https://raw.githubusercontent.com/skitapa/gobbler-repo/main/artifacts/aircraft-api-0.1.0.tar.gz",
+      "sha256": "90a03e1f37634fa698f0a375c00c7cc2e94723b3c490ff8d55b550b9af5b864c",
+      "manifest": {
+        "manifest_version": 1,
+        "id": "aircraft-api",
+        "name": "OSINT: aircraft position API",
+        "version": "0.1.0",
+        "kind": "source",
+        "description": "Polls a free, keyless public ADS-B API for aircraft positions and lands them as observations - no radio required. Combines with the AIS decoder for a single ship + aircraft situational picture.",
+        "run": {
+          "command": [
+            "python3",
+            "main.py"
+          ],
+          "missing_hint": "python3 not found - install it (python3 ships with Ubuntu 24.04 by default)"
+        },
+        "requires": {
+          "binaries": [
+            "python3"
+          ]
+        },
+        "produces": {
+          "sources": [
+            "aircraft-api"
+          ]
+        },
+        "settings_schema": [
+          {
+            "key": "poll_seconds",
+            "type": "int",
+            "default": 30,
+            "unit": "s",
+            "description": "How often to poll the upstream aircraft API."
+          }
+        ],
+        "unlocks": [
+          {
+            "when": "installed",
+            "features": [
+              "radio-less aircraft position feed"
+            ]
+          },
+          {
+            "when": "with:ais",
+            "features": [
+              "combined ship + aircraft situational picture"
+            ]
+          }
+        ],
+        "ui_components": [],
+        "notifications": [],
+        "logs": []
+      }
+    }
+  ]
+}
